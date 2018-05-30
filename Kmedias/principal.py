@@ -150,7 +150,7 @@ class Kmedias():
 	"""
 	def leer_archivo(self, nombre):
 		puntos = []
-		arch = open(nombre+".txt", "r")
+		arch = open(nombre, "r")
 		linea = arch.readline()
 		while linea!="":
 			lista = linea.split()
@@ -164,27 +164,27 @@ Funcion principal
 Controla el flujo del programa
 """
 def principal():
-	kmedias = Kmedias("defaultPuntos")
-	kmedias.inicializar_medias(kmedias.leer_archivo("defaultMedias"))
+	kmedias = Kmedias("clase")
+	kmedias.inicializar_medias(kmedias.leer_archivo("clase.medias"))
 	while True:
 		print ("********************KMEDIAS***************************************")
-		print("\n1. Ejecutar\n2. Cargar otros puntos\n3. Cargar otras medias\n4. Medias aleatorias\n5. Salir\n")
+		print("\n1. Ejecutar\n2. Cargar otros datos\n3. Medias aleatorias\n4. Salir\n")
 		leer = input("Opcion: ")
 		opcion = int(leer)
 		if opcion == 1:
 			kmedias.ejecutar()
 		elif opcion == 2:
-			nombre = input("Nombre archivo: ")
-			kmedias.puntos = kmedias.leer_archivo(nombre)
+			try:
+				nombre = input("Nombre archivo: ")
+				kmedias.puntos = kmedias.leer_archivo(nombre)
+				medias = kmedias.leer_archivo(nombre+".medias")
+				kmedias.medias = kmedias.inicializar_medias(medias)
+			except OSError:
+				print("No existe el archivo")
 		elif opcion == 3:
-			nombre = input("Nombre archivo: ")
-			medias = kmedias.leer_archivo(nombre)
-			kmedias.medias = kmedias.inicializar_medias(medias)
-		elif opcion == 4:
 			k = int(input("K: "))
 			kmedias.medias =kmedias.inicializar_medias_A(k)
 		else:
 			break
-
-			
+		
 principal()

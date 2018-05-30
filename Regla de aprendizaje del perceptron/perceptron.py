@@ -45,6 +45,17 @@ class Perceptron():
 		self.n = 0.1
 		self.max_ite = 1000
 	"""
+	Recibe un vector de entrada
+	Lo evalua en la red neuronal y obtiene su salida 
+	"""
+	def reconocer(self, entrada):
+		try:
+			x = V("1 " + entrada)
+			return f_escalon(self.w * x)
+		except:
+			return "Error en el formato de entrada o la red no ha sido entrenada"
+		
+	"""
 	No recibe parámetros
 	Se encarga de ejecutar el algoritmo de aprendizaje del perceptrón. 
 			se detiene cuando el vector de pesos deja de tener cambios.
@@ -99,7 +110,7 @@ def principal():
 	perceptron = Perceptron("nand2")
 	while True:
 		print ("********************Perceptron**************************")
-		print("\nSelecciona una opcion: \n1.Ejecutar \n2.Selecciona otro archivo \n3.Cambiar la tasa de aprendizaje \n4.Salir ")
+		print("\nSelecciona una opcion: \n1.Entrenar \n2.Selecciona otro archivo \n3.Cambiar la tasa de aprendizaje \n4.Reconocer \n5.Salir ")
 		opc = int(input("\nOpcion: "))
 		if opc == 1:
 			print(perceptron.aprender())
@@ -109,6 +120,12 @@ def principal():
 			print("\nSe recargaron los datos")
 		elif opc == 3:
 			perceptron.n = float(input("\nNueva tasa de aprendizaje: "))
+		elif opc == 4:
+			while True:
+				en = input("Vector de entrada: ")
+				if en == "salir":
+					break
+				print("Salida: " + str(perceptron.reconocer(en)))
 		else:
 			break
 		
