@@ -21,8 +21,12 @@ def inversa(mat):
 		[round((c12*-1)/det,4), round(c11/det,4)]]	
 	return ci
 	
-	
-	
-	
-	
+def mat_diagonal(clase):
+	mc = clase.mat_cov
+	m11 = mc[0][0]; m22 = mc[1][1]
+	m12 = mc[0][1]
+	#Matriz diagonal, con diagonal principal cercana a cero
+	if m11<=1 and m11 >=-1 and  m22<=1 and m22 >=-1 and m12==0:
+		return True
+	return False	
 	
