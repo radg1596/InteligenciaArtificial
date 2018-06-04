@@ -18,7 +18,7 @@ class W():
 		self.l_puntos = l_puntos
 		self.media = self.cal_media()
 		self.mat_cov = self.cov()
-		self.mat_covi = self.inversa(self.mat_cov)
+		self.mat_covi = self.inversa()
 	"""
 	Calcula la media del conjunto de punto de la 
 	instancia
@@ -51,9 +51,9 @@ class W():
 	Recibe la matriz de covarianzas y retorna su inversa
 	como una lista de dos listas [[1,2][3,4]]
 	"""	
-	def inversa(self, mat):
-		c11 = mat[0][0]; c22 = mat[1][1]
-		c12 = mat[0][1]
+	def inversa(self):
+		c11 = self.mat_cov[0][0]; c22 = self.mat_cov[1][1]
+		c12 = self.mat_cov[0][1]
 		det =  (c11*c22) - (c12 * c12)
 		ci = [[round(c22/det,4), round((c12*-1)/det,4)], 
 			[round((c12*-1)/det,4), round(c11/det,4)]]	
