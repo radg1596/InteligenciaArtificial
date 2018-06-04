@@ -51,7 +51,7 @@ def log(clase):
 	c11 = ci[0][0]; c22 = ci[1][1]
 	c12 = ci[0][1]
 	arg = c11 * c22 - 2*c12
-	log = (-1/2) * math.log(math.e, arg)
+	log = (-1/2) * math.log(math.e, abs(arg))
 	return log
 """
 Esta funcion recibe una clase y solo calcula los coeficientes 

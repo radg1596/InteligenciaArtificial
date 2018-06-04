@@ -25,8 +25,8 @@ class W():
 	"""	
 	def cal_media(self):
 		x=0.0;y=0.0
+		total = len (self.l_puntos)
 		for punto in self.l_puntos:
-			total = len (self.l_puntos)
 			x = x + punto.x
 			y = y + punto.y
 		return P(x/total, y/total)
